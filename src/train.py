@@ -1,11 +1,13 @@
 import os
 import pickle
 import sys
+import logging
 
 import numpy as np
 import yaml
 from sklearn.ensemble import RandomForestClassifier
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def train(seed, n_est, min_split, matrix):
     """
@@ -59,6 +61,8 @@ def main():
     # Save the model
     with open(output, "wb") as fd:
         pickle.dump(clf, fd)
+    
+    logging.info("Model saved to %s", output)
 
 
 if __name__ == "__main__":
