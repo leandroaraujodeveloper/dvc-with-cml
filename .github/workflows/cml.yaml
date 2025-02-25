@@ -15,7 +15,9 @@ jobs:
       - name: Generate metrics report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CREDENTIALS: ${{ secrets.CREDENTIALS }}
         run: |
+          echo $CREDENTIALS > credentials.json
           cml ci
           if [ $GITHUB_REF = refs/heads/main ]; then
             PREVIOUS_REF=HEAD~1
